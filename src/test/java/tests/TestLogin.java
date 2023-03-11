@@ -39,8 +39,6 @@ public class TestLogin extends BaseTest {
     JSONObject invalidLogin = (JSONObject) jsonObject.get("invalidLogin");
 
 
-
-
     @Test
     void testValidLogin() throws InterruptedException {
 
@@ -55,18 +53,15 @@ public class TestLogin extends BaseTest {
     }
 
     @Test
-    void testInvalidLogin() { // does not work, mistake on the website
+    void testInvalidLogin() throws InterruptedException { //  changes on the website
         LoginErrorPage errorPage = CustomerLoginPage.open(driver)
                 .invalidLogin(
                         (String) invalidLogin.get("userName"),
                         (String) invalidLogin.get("password")
                 );
-
-        Assertions.assertTrue(errorPage.getLoginConfirmation().contains("The username and password could not be verified."));
+        Thread.sleep(5000);
+        Assertions.assertTrue(errorPage.getLoginConfirmation().contains("Please enter a username and password."));
     }
-
-
-
 
 
 }

@@ -1,0 +1,13 @@
+{
+  "customer_firstName": "Phoebe",
+  "customer_lastName": "Buffae",
+  "customer_address_street": "Lawrence",
+  "customer_address_city": "Brooklyn",
+  "customer_address_state": "NewYork",
+  "customer_address_zipCode": "12455",
+  "customer_phoneNumber": "6506548978",
+  "customer_ssn": "123",
+  "customer_username": "marek",
+  "customer_password": "123456",
+  "repeatedPassword": "123456"
+}

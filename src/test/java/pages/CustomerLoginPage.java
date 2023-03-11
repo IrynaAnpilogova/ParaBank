@@ -17,6 +17,7 @@ public class CustomerLoginPage extends BasePage {
     private By buttonLogin = By.xpath("//*[@id=\"loginPanel\"]/form/div[3]/input");
     private By linkRegister = By.linkText("Register");
 
+
     // constructor
     public CustomerLoginPage(WebDriver driver) {
         this.driver = driver;
@@ -43,6 +44,15 @@ public class CustomerLoginPage extends BasePage {
         driver.findElement(buttonLogin).click();
         return new LoginErrorPage(driver);
     }
+
+    //click on Register button
+
+    public RegisterPage clickOnRegisterLink() {
+        driver.findElement(linkRegister).click();
+        return new RegisterPage(driver);
+    }
+
+
 
 
 

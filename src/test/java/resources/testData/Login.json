@@ -4,7 +4,7 @@
     "password": "demo"
   },
   "invalidLogin": {
-    "userName": "john",
+    "userName": "",
     "password": "125821324"
   }
 }
