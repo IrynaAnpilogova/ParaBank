@@ -1,0 +1,8 @@
+tests/TestLogin.class
+tests/TestRegistration.class
+pages/LoginErrorPage.class
+pages/HomePage.class
+pages/RegisterPage.class
+base/BasePage.class
+base/BaseTest.class
+pages/CustomerLoginPage.class

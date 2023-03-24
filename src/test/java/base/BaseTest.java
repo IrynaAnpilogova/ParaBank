@@ -14,12 +14,12 @@ public class BaseTest {
     protected WebDriver driver;
 
     @BeforeAll
-    static void setUp() {
+    static public void setUp() {
         WebDriverManager.chromedriver().setup();
     }
 
     @BeforeEach
-    void setUpBase() throws Exception {
+    public void setUpBase() throws Exception {
         ChromeOptions options = new ChromeOptions();
         options.addArguments("--remote-allow-origins=*");
 
@@ -28,7 +28,7 @@ public class BaseTest {
     }
 
     @AfterEach
-    void tearDown() {
+    public void tearDown() {
         driver.quit();
     }
 

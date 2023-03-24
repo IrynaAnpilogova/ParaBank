@@ -23,8 +23,7 @@ public class LoginErrorPage extends BasePage  {
 
     public LoginErrorPage(WebDriver driver) {
         this.driver = driver;
-//        assertEquals("ParaBank | Error",
-//                title, driver.getTitle());
+
 
     }
 

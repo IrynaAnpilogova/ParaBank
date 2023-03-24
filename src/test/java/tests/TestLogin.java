@@ -1,16 +1,19 @@
 package tests;
 
 import base.BaseTest;
-import com.fasterxml.jackson.databind.util.JSONPObject;
+
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import pages.CustomerLoginPage;
 import pages.HomePage;
 import pages.LoginErrorPage;
+import resources.testData.TestData;
 
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -20,44 +23,32 @@ public class TestLogin extends BaseTest {
 
     // constructor
     public TestLogin() throws IOException, ParseException {
+
     }
 
-    //
-    JSONParser parser = new JSONParser();
-    FileReader reader;
-
-    {
-        try {
-            reader = new FileReader("src/test/java/resources/testData/Login.json");
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
-    }
-
-    JSONObject jsonObject = (JSONObject) parser.parse(reader);
-    JSONObject validLogin = (JSONObject) jsonObject.get("validLogin");
-    JSONObject invalidLogin = (JSONObject) jsonObject.get("invalidLogin");
-
-
+    @Description("Navigate to the page, login with valid credentials")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
-    void testValidLogin() throws InterruptedException {
-
+    public void testValidLogin() throws InterruptedException, IOException, ParseException {
+        TestData data = new TestData(driver);
         HomePage homePage = CustomerLoginPage.open(driver)
                 .validLogin(
-                        (String) validLogin.get("userName"),
-                        (String) validLogin.get("password")
+                        (String) data.validLoginTestData().get("userName"),
+                        (String) data.validLoginTestData().get("password")
                 );
 
 
         Assertions.assertTrue(homePage.getLoginConfirmation().contains("Accounts Overview"));
     }
-
+    @Description("Navigate to the page, login with invalid credentials")
+    @Severity(SeverityLevel.CRITICAL)
     @Test
-    void testInvalidLogin() throws InterruptedException { //  changes on the website
+    void testInvalidLogin() throws InterruptedException, IOException, ParseException { //  changes on the website
+        TestData data = new TestData(driver);
         LoginErrorPage errorPage = CustomerLoginPage.open(driver)
                 .invalidLogin(
-                        (String) invalidLogin.get("userName"),
-                        (String) invalidLogin.get("password")
+                        (String) data.invalidLoginTestData().get("userName"),
+                        (String) data.invalidLoginTestData().get("password")
                 );
         Thread.sleep(5000);
         Assertions.assertTrue(errorPage.getLoginConfirmation().contains("Please enter a username and password."));
